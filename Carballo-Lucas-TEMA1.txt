@@ -1,0 +1,83 @@
+program parcialRECUPERATORIO
+
+const
+	ValorCorte = 99999;
+
+type
+
+ registro = record
+	cod_u: integer;
+	cod_f: integer;
+	cod_c: integer;
+	mesa: integer;
+	cant_votos: integer;
+	end;
+
+	textoEntrada: file of registro;
+	reg: registro;
+	
+procedure leer ( var archivo: textoEntrada; var reg: registro);
+begin
+  if ( not (EOF(archivo))) then
+     begin
+       readln(archivo, reg.cod_u);
+       readln(archivo, reg.cod_f);
+       readln(archivo, reg.cod_c;
+       readln (archivo, reg.mesa);
+       readln (archivo, cant_votos);
+		end	else reg.cod_u:= valorCorte;
+  end;
+  
+ var
+	Cod_UNIVERSIDAD:integer;
+	Cod_FACULTAD:integer;
+	Cod_Claustro:integer;
+	totalUni: integer;
+	totalClaustro:integer;
+	totalFacu:integer;
+
+begin
+	assign (textoEntrada, 'archivo.dat');
+	reset (textoEntrada); 
+	leer(textoEntrada, reg);
+	 while (reg.cod_u <> valorCorte) do
+        begin
+          Cod_UNIVERSIDAD:= reg.cod_u;
+          writeln('Codigo de universidad: ');
+          write(Cod_UNIVERSIDAD);
+		  totalUni:=0;
+		  while (reg.cod_u = Cod_UNIVERSIDAD) and(reg.cod_u <> valorCorte)) do
+		  begin
+			Cod_FACULTAD:=reg.cod_f;
+			writeln('Codigo de facultad: ');
+			write(Cod_FACULTAD);
+			totalFacu:=0;
+			while (reg.cod_f = Cod_FACULTAD) and(reg.cod_u <> valorCorte)) do
+				begin
+				Cod_Claustro:=reg.cod_c;
+					writeln( Codigo Claustro: );
+					write (Cod_Claustro); 
+					totalClaustro:=0;
+					while( (Cod_Claustro = reg.cod_c) and(reg.cod_u <> valorCorte)) do
+						begin
+						totalClaustro:= totalClaustro + reg.cant_votos;
+						totalFacu:=totalFacu + reg.cant_votos;
+						totalUni:= totalUni+ reg.cant_votos;
+						leer(textoEntrada, reg);
+						end;
+					write ( 'Total de votos del claustro:');
+					write (totalClaustro);
+				end;
+			writeln('............................... ...............');
+			writeln('............................... ...............');
+			writeln('Total de votos en Facultad: ');
+			write (totalFacu);
+			end;
+		writeln('............................... ...............');
+		writeln('Total de votos en universidad)';
+		write(totalUni);
+		end;
+	close (textoEntrada);
+end.
+
+

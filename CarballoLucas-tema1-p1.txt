@@ -1,0 +1,108 @@
+program parcial
+
+
+type
+  articulo = record
+    cod: longInt;
+    desc: string;
+    precio: real;
+  end;
+  archArt= file of articulo ;
+  
+  Procedure lectura (var registro: articulo)
+  begin
+	writeln( 'Ingrese desripcion: ');
+	read (registro.desc);
+	writeln( 'Ingrese precio: ');
+	read (registro.precio);
+ end;
+ 
+  
+ Procedure agregar (var arch: archArt; art: articulo);
+ var
+	NNR: integer;
+	r:articulo;
+begin
+	reset(arch);
+	read(arch, r);
+	NNR= r.cod;
+	if(NNR=0) then
+	begin
+		seek(arch,filesize(a));
+		write(arch,art); // agrega el elemento pasado por parametro al archivo en el final.
+	end else 
+		begin
+		if (NRR<0) then
+			begin
+				seek(arch,NNR);
+				//agregarlo ahi
+				seek(arch, filepos(arch) - 1);
+				write(arch,art);
+				seek(arch,0);
+				write(arch,aux); // dejo en el primer lugar un registro vacio.
+		end;
+		end;
+	close (arch);
+		
+end;
+  
+ Procedure crearycargar(var arch: archArt);
+ 
+ var 
+ registro,r:articulo;
+ NNR: integer;
+ 
+begin
+	rewrite(arch); // creo el archivo
+	writeln( 'Ingrese codigo: ');
+	read (registro.cod);
+	read(arch, r);
+	NNR= r.cod;
+	while (not(registro.cod = '000')) do
+	begin
+		lectura(registro);
+		read(arch, r);
+		NNR= r.cod;
+		if(NNR=0) then
+			begin
+			seek(a,filesize(a));
+			write(a,regi); // agrega el elemento pasado por parametro al archivo en el final.
+			
+		end else begin
+			if (NRR<0) then
+				begin//Si es menor a 0 el codigo lo agrego en ese lugar 
+				seek(arch,NNR);
+				//agregarlo ahi
+				seek(arch, filepos(arch) - 1);
+				write(arch,art);
+				seek(arch,0);
+				write(arch,aux); // dejo en el primer lugar un registro vacio.
+			end;
+			end;
+		end;
+		writeln( 'Ingrese codigo nuevo: ');
+		read (registro.cod);
+	end;
+	close (arch);
+		
+end;
+  
+
+ var
+  archivo:archArt;
+  registro:articulo;
+ 
+ 
+ begin
+	assing (arch, 'archivo.bin');
+	
+	crearycargar(arch);
+	
+	writeln( 'Ingrese codigo: ');
+	read (registro.cod);
+	lectura(registro);
+	agregar(arch, registro);
+		
+	end;
+ 
+ end

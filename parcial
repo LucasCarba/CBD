@@ -1,0 +1,185 @@
+program parcial
+
+const
+	ValorAlto = 99999;
+	N = ;
+
+type
+
+	cadena= string[50];
+
+	Registro = record
+		codigo:integer;
+		nombre: cadena;
+		cantidad: integer;
+		end;
+		
+	archivo: file of Registro;
+	
+	vector_archivos = array [0..N] of archivo;
+	vector_registro = array [0..N] of Registro;
+	maestro= file of Registro;
+var
+
+j,k:integer;
+min, aux: Registro; // Minimos
+
+
+
+procedure leer_registros (var va: vector_archivos; var vr: vector_registro; aux: Registro); 
+	var 
+		i:integer;
+	begin
+		for i:=0 to N do
+			begin	
+				leer(i,va,vr);
+	end;
+
+
+procedure leer ( i: integer; var va: vector_archivos; var vr: vector_registro);
+		begin
+		if(EOF(va[i]))
+		then
+			vr[i].codigo:= ValorAlto;
+		else
+			read (va[i], vr[i]);
+		
+		end;
+		
+		
+procedure determinarMinimo (var vr: vector_registro, var indice:integer);
+var
+	i:integer;
+	aux:vector_registro;
+begin
+	aux.cod=vr[1].codigo; //Dato del primero.
+	for i=1 to 9 do
+	begin
+		if (vr[i].codigo < aux.codigo) then
+			begin
+				indice:=i;
+				aux.codigo:=vr[i].codigo;
+			end;
+	end;
+end;
+
+procedure minimo (var vr: vector_registro; var min: Registro; var va: vector_archivos);
+var
+i:integer;
+begin
+	determinarMinimo(vr,i);
+	min:=vr[i];
+	leer(va[i], vr[i]);
+
+end;
+
+
+Procedure BajaFisica(var a:archivo; apellido,nombre: String);
+Var
+	posBorrar:integer; rp,aux:per;
+begin
+	reset(a);
+	while (not eof(a)) then 
+		begin
+		read(a,rp);
+		if(rp.ape = apellido) and (rp.nom=nombre)then
+			begin
+				posBorrar:=filepos(a)-1;
+				seek(a,filesize(a)-1);
+				read(a,aux);
+				seek(a, posBorrar);
+				write(a,aux);
+				seek(a,filesize(a)-1);
+				truncate(a);
+			end;
+			close(a);
+	end;
+end;
+	
+	
+Procedure BajaLogica(var a: archivo; apellido,nombre: String);
+Var
+	posBorrar:integer; rp:persona;
+begin
+	reset(a);
+	while (not eof(a)) then
+	begin
+		read( a,rp);
+		if(rp.ape = apellido) and (rp.nom=nombre)then
+		begin
+			posBorrar:=filepos(a)-1;
+			rp.ape=“@”
+			seek(a, posBorrar);
+			write(a,rp);
+		end;
+	end;
+close(a);
+end;
+
+Procedure agregar (var a: archivo; var regi:registro);
+var
+	aux,r:registro;
+	RNN:integer;
+	pos:integer;
+
+begin
+	reset(a);
+	read(a,r);
+	RNN:=StrToInt(r.codigo); // covierte la cadena a un valor entero;
+	if(RNN=0) then
+	begin
+		seek(a,filesize(a));
+		write(a,regi); // agrega el elemento pasado por parametro al archivo en el final.
+	end else begin
+		seek(a,RNN);
+		pos:=StrToInt(aux.cantidad);
+		//agregarlo ahi
+		seek(a, filepos(a) - 1);
+		write(a,regi);
+		seek(a,0);
+		r.cantidad:=IntToStr(pos); //pasa el entero a cadena
+		seek(a,0);
+		write(a,aux); // dejo en el primer lugar un registro vacio.
+	end;
+	close(a);
+		
+
+end;
+	
+
+begin
+	//INICIALIZO
+	assing (Maestro, 'maestro.bin');
+	rewrite (Maestro);
+	for j:=0 to 9 do 
+	begin
+		assing(va[j], 'archDetalle'+ j +'.bin');
+		reset(va[j]);
+		leer(va[j],vr[j]);
+	end;
+	
+	minimo(vr,min,va);
+	while (min.codigo <> ValorAlto) do 
+		begin
+		while ( Registro.codigo <> min.codigo) do //Busca el minimo en el maestro.
+			begin
+				read(maestro, Registro);
+				aux:=min.codigo;
+				while( aux = min.codigo) do  //proceso el minimo
+					begin
+						Registro.cantidad:=registro.cantidad - min.cantidad;
+						minimo(vr, min, va);
+					end;
+					seek(Maestro, filepos(Maestro) - 1);
+					write(Maestro, Registro);
+				end;
+	
+		end;
+		
+	for k:=0 to 9 do begin
+	close(va[k]);
+	end;
+	close(Maestro);
+
+end.
+

@@ -1,0 +1,5 @@
+  ID:3 // rosa, tatapi, H-Max: 110cm. Color: rosa.
+  ID:3 // fafa, ttatasda, H-Max: 170cm. Color: verde culo.
+  ID:3 // margarita, tuvieja, H-Max: 5cm. Color: amarilla.
+  ID:5 // papa, sopo, H-Max: 151cm. Color: caca.
+  ID:6 // mono, papa, H-Max: 55cm. Color: culo.

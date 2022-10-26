@@ -1,0 +1,90 @@
+program  ej2p2-2
+const
+     valorCorte= 99999;
+type
+  palabra = string [20];
+  disc = record
+    cod_autor:integer;
+    nom_autor: String[20];
+    nom_disco: String[20];
+    genero: String[20];
+    cant_v: integer;
+   end;
+  TextoEntrada: file of disc;
+  textoSalida: text;
+  registro: disc;
+procedure leer ( var archivo: TextoEntrada; var reg: disc);
+begin
+  if ( not (EOF(archivo))) then
+     begin
+       readln(archivo, registro.cod_autor);
+       readln(archivo, registro.genero);
+       readln(archivo, registro.nom_disco);
+       readln (archivo, registro.nom_autor);
+       readln ( archivo, registro.cant_v);
+  end
+      else registro.cod_autor:= valorCorte;
+  end;
+
+var
+  totalVendidos: integer;
+  AutorActual: integer;
+  totalAutor: integer;
+  generoActual: palabra;
+  totalgenero: integer;
+
+begin
+  Assign (TextoEntrada, 'archivo.dat');
+  Assign (textoSalida, 'salida.txt');
+  reset (TextoEntrada);
+  rewrite (textoEntrada);
+  totalVendidos:=0;
+  leer(textoEntrada, registro);
+  while (registro.cod_autor <> valorCorte) do
+        begin
+          AutorActual:= registro.cod_autor;
+          write('El autor actual es: ');
+          write(AutorActual);
+          writeln(textoSalida, 'El autor actual es:');
+          writeln(textoSalida,AutorActual);
+          totalAutor:=0;
+          while ( registro.cod_autor = AutorActual) and ( registro.cod_autor <> valorCorte) do
+                begin
+                  generoActual := registro.genero;
+                  write( 'El genero actual es:');
+                  writeln ( generoActual);
+                  write(textoSalida, 'El Genero actual es:');
+                  writeln(textoSalida, generoActual);
+                  totalGenero:= 0;
+                  while ((registro.genero = generoActual) and (registro.cod_autor <> valorCorte)) do
+                        begin
+                          write ('Nombre del disco:' );
+                          write (registro.nom_disco);
+                          write ('Cantidad vendida: ');
+                          writeln( registro.cant_v);
+                          write (textoSalida,'Nombre del disco:' );
+                          write (textoSalida,registro.nom_disco);
+                          write (textoSalida,'Cantidad vendida: ');
+                          writeln(textoSalida, registro.cant_v);
+                          totalGenero:= totalGenero + registro.cant_v;
+                          totalAutor:= totalAutor + registro.cant_v;
+                          totalVendidos:= totalVendidos+ registro.cant_v;
+                          leer(textoEntrada, registro);
+                        end;
+                  write ( 'Total Genero') ; writeln(totalGenero);
+                  write ( textoSalida,'Total Genero') ; writeln(textoSalida,totalGenero);
+
+                  end;
+                 write('Total Autor');
+                 writeln(totalAutor);
+                 write(textoSalida, 'Total Autor');
+                 writeln( textoSalida, totalAutor);
+                end;
+                write (' total Discografia:' );
+                writeln(totalVendidos);
+                write ( textoSalida, ' total Discografia:' );
+                writeln( textoSalida, totalVendidos);
+
+        close(textoEntrada)
+        close(textoSalida)
+                                                                                                                                                                                                                                            

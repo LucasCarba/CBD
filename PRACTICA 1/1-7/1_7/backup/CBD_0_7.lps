@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="11"/>
+    <BuildModes Active="Default"/>
+    <Units Count="1">
+      <Unit0>
+        <Filename Value="CBD_0_7.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="71"/>
+        <CursorPos X="43" Y="83"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit0>
+    </Units>
+    <JumpHistory Count="21" HistoryIndex="20">
+      <Position1>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="166" Column="58" TopLine="151"/>
+      </Position1>
+      <Position2>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="11" Column="14"/>
+      </Position2>
+      <Position3>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="63" Column="56" TopLine="51"/>
+      </Position3>
+      <Position4>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="67" Column="18" TopLine="51"/>
+      </Position4>
+      <Position5>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="83" Column="16" TopLine="69"/>
+      </Position5>
+      <Position6>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="82" Column="50" TopLine="70"/>
+      </Position6>
+      <Position7>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="62" Column="57" TopLine="53"/>
+      </Position7>
+      <Position8>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="65" Column="27" TopLine="53"/>
+      </Position8>
+      <Position9>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="170" Column="44" TopLine="92"/>
+      </Position9>
+      <Position10>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="92" Column="9" TopLine="77"/>
+      </Position10>
+      <Position11>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="87" Column="24" TopLine="84"/>
+      </Position11>
+      <Position12>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="91" Column="26" TopLine="80"/>
+      </Position12>
+      <Position13>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="92" Column="25" TopLine="74"/>
+      </Position13>
+      <Position14>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="96" Column="7" TopLine="86"/>
+      </Position14>
+      <Position15>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="93" Column="30" TopLine="76"/>
+      </Position15>
+      <Position16>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="104" Column="10" TopLine="87"/>
+      </Position16>
+      <Position17>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="39" Column="3" TopLine="24"/>
+      </Position17>
+      <Position18>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="48" Column="39" TopLine="32"/>
+      </Position18>
+      <Position19>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="42" Column="11" TopLine="30"/>
+      </Position19>
+      <Position20>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="45" Column="55" TopLine="33"/>
+      </Position20>
+      <Position21>
+        <Filename Value="CBD_0_7.lpr"/>
+        <Caret Line="80" Column="68" TopLine="68"/>
+      </Position21>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

@@ -1,0 +1,136 @@
+program ejercicio7
+type 
+	registro = record
+	 DNI:integer;
+	 legajo:integer;
+	 nomb:String[20];
+	 ape:String[20];
+	 direc:String[20];
+	 año:integer;
+	 nacimiento:longInt;
+	 end;
+	arch = FILE OF registro;
+	
+var
+	a,b: arch;
+	alumno: registro;
+	
+	
+procedure puntoA(a:arch;alumno:registro)
+var
+num:integer;
+
+begin
+	assign(a, 'alumnos.txt');
+	rewrite(a);
+	write('Ingrese un numero'); //corta con 0
+	read(num);
+	while(num != 0)
+		do begin
+			write('INGRESO DE DATOS:');
+			read(alumno.DNI);
+			read(alumno.legajo);
+			read(alumno.nomb);
+			read(alumno.ape);
+			read(alumno.direc);
+			read(alumno.año);
+			read(alumno.nacimiento);
+			writeLn(a,alumno);
+			read(num);
+	end;
+end;
+
+procedure puntoB(a:arch;alumno:registro)
+var
+	cadena:string[10];
+begin
+	write('Ingrese un nombre');
+	read(cadena);
+	assign(a, 'alumnos.txt');
+	reset(a);
+	while not EoF(a) do
+	begin
+		nombre:=alumno.nomb;
+		
+		
+end;
+
+procedure puntoC(a:arch;alumno:registro)
+begin
+assign(a, 'alumnos.txt');
+reset(a);
+assign(b, 'alumnosAEgresar.txt');
+rewrite(b);
+
+while not EoF(a) do
+	begin
+	if (alumno.año == 5)then
+		begin
+		writeLn(b,alumno);
+		end;
+	end;
+close(b);
+close(a);
+end;
+
+procedure puntoD(a:arch;alumno:registro)
+begin
+assign(a, 'alumnos.txt');
+reset(a);
+read(num);
+while(num != 0)
+		do begin
+			write('INGRESO DE DATOS:');
+			read(alumno.DNI);
+			read(alumno.legajo);
+			read(alumno.nomb);
+			read(alumno.ape);
+			read(alumno.direc);
+			read(alumno.año);
+			read(alumno.nacimiento);
+			writeLn(a,alumno);
+			read(num);
+	end;
+end;
+
+procedure puntoE (a:arch;alumno:registro)
+var
+legajo:integer;
+
+actual: alumno;
+
+begin
+	write('Ingrese legajo');
+	read(legajo);
+
+	assign(a, 'alumnos.txt')
+	reset(a);
+	while not EoF(a) do
+	begin
+		actual:=alumno;
+		if((alumno.legajo == legajo) and  then
+			begin
+			writeln('Anote los nuevos datos');
+			alumno.DNI:=actual.DNI
+			alumno.legajo:=actual.legajo;
+			alumno.nomb:=actual.nomb;
+			alumno.ape:=actual.ape;
+			alumno.direc:=actual.direc;
+			alumno.año:=actual.año;
+			read(alumno.nacimiento);
+		
+			Seek(a,FilePos(a)-1); //Es necesario reposicionar el apuntador del archivo al principio del registro que desea modificar, ya que al leer un registro, el apuntador se posiciona en el registro siguiente
+			Write(a,alumno);
+			close(a);
+			writeln('Registro modificado !!!');
+		end;
+	end;
+end;
+
+
+
+
+begin	
+
+
+end.

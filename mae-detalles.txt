@@ -1,0 +1,89 @@
+
+program ej3;
+const 	valorAlto = 9999;
+	N = 20;
+type
+	regMae = record
+		codigo_calzado: integer;
+		numero: integer;
+		descripcion: string[25];
+		precio: real;
+		color: string[25];
+		stock: integer;
+		stock_min: integer;	
+	end;
+	regDet = record
+		codigo_calzado: integer;
+		numero: integer;
+		cant_vendida: integer;
+	end;
+	fileMae = file of regMae;
+	fileDet = file of regDet;
+	array_fileDet = array[1..N] of fileDet;
+	array_regDet = array[1..N] of regDet;
+procedure leer (var arch: fileDet; var reg: regDet);
+begin
+	if (not (eof(arch))) then
+		read(arch, reg);
+	else
+		reg.codigo_calzado:=valorAlto;
+end;
+procedure procesar (var archMae: fileMae; var locales: array_fileDet);
+var min: regDet; v_reg: array_regDet; regM: regMae; archText: Text;
+begin
+	abrirArchivos(archMae, locales, archText);
+	{inicializo el arreglo de archivos detalles}
+	for i:=1 to N do begin
+		leer(locales[i], v_reg[i]);
+	end;
+	buscarMin(v_reg, min, locales);
+	while (min.codigo_calzado<>valorAlto) do
+	begin
+		{busco el elemento min en el archivo maestro}
+		read(archMae, regM);
+		while (min.codigo_calzado<>regM.codigo_calzado) do begin
+			{todos los que vaya recorriendo acá SEGURO no están en el detalle y son los que no tuvieron ventas}
+			writeln('Código de calzado ',regM.codigo_calzado, ' no ha registrado ventas);
+			read(archMae, regM);
+		end;
+		regM.stock:=regM.stock-min.cant_vendida;
+		if (regM.stock<regM.stock_min) then
+			writeln(archText, regM.codigo_calzado);
+		seek(archMae, filepos(archMae)-1);
+		write(archMae, regM);
+		buscarMin(v_reg, min, locales);
+	end;
+	while (not (eof(archMae))) do begin
+		read(archMae, regM);
+		writeln('Código de calzado ',regM.codigo_calzado, ' no ha registrado ventas);
+	end;
+	cerrarArchivos(archMae, locales, archText);
+end;
+procedure abrirArchivos (var archMae: fileMae; var locales: array_fileDet; var archText: Text);
+var i: integer; cadena: string[2];
+begin
+	{apertura del archivo maestro}
+	assign(archMae, 'zapateria.bat');
+	reset(archMae);
+	{apertura del archivo de los locales}
+	for i:=1 to N do begin
+		str(i, cadena);
+		assign(locales[i], concat('local',cadena,'.dat'); 
+		reset(fileLogicoDet[i]);
+	end;
+	{creacion del archivo de texto}
+	assign(archText, 'calzadosinstock.txt');
+	rewrite(archText);
+end;
+procedure cerrarArchivos (var archMae; var locales: array_fileDet; var archText: Text);
+var i:integer;
+begin
+	for i:=1 to N do
+		close(locales[i]);
+	close(archMae);
+	close(archText);
+end;
+var locales: array_fileDet; archMae: fileMae;
+begin
+	procesar(archMae, locales);
+end.

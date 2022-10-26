@@ -1,0 +1,28 @@
+program ejercicio6
+type 
+
+arch = FILE OF String[20];
+
+Tipo_Archivo = file of char;
+	
+var
+	
+	a: arch;
+	
+	Mi_Archivo : Tipo_Archivo;
+	Archivito : text;
+	
+	dato: String[20];
+
+begin
+assign(Mi_Archivo, 'libros.txt');
+reset(Mi_Archivo);
+assign(a, 'nuevo.txt');
+rewrite(a);
+
+while not EoF(Mi_Archivo) do
+	begin
+		ReadLn(Archivito,dato);
+		write (b,dato);
+	end;
+end.
